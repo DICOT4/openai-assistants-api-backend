@@ -1,0 +1,8 @@
+services:
+  api:
+    volumes:
+      # Adds current directory as volume.
+    - .:/app/src/
+    environment:
+      # Enables autoreload.
+      DICOTA_RELOAD: "True"
