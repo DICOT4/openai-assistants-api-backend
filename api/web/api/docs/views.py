@@ -24,6 +24,7 @@ async def swagger_ui_html(request: Request) -> HTMLResponse:
         oauth2_redirect_url=str(request.url_for("swagger_ui_redirect")),
         swagger_js_url="/static/docs/swagger-ui-bundle.js",
         swagger_css_url="/static/docs/swagger-ui.css",
+        swagger_ui_parameters={"defaultModelsExpandDepth": -1},
     )
 
 

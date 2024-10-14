@@ -56,6 +56,9 @@ services:
     image: mongo-express
     container_name: mongo-express
     restart: always
+    depends_on:
+      database:
+        condition: service_healthy
     environment:
       - ME_CONFIG_MONGODB_URL=mongodb://${DICOTA_DB_HOST}:${DICOTA_DB_PORT}/
       - ME_CONFIG_SITE_BASEURL=/mongo-admin

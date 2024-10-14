@@ -7,7 +7,7 @@ from api.settings import settings
 def main() -> None:
     """Entrypoint of the application."""
 
-    logger.debug(settings)
+    logger.info(settings)
 
     uvicorn.run(
         "api.web.application:get_app",

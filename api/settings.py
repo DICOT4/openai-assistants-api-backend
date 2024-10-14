@@ -7,6 +7,12 @@ from yarl import URL
 
 TEMP_DIR = Path(gettempdir())
 
+SYS_PROMPT = """
+You are an AI Assistant that tells people what activities they can do based on the weather.
+When responding, you don't need to provide the weather information in the response.
+Just depending on the overall weather, suggest the activities.
+"""
+
 
 class LogLevel(str, enum.Enum):
     """Possible log levels."""
@@ -48,6 +54,8 @@ class Settings(BaseSettings):
 
     token_secret: str = "testTokenSecret123"
 
+    openai_model: str = "gpt-4o-mini"
+
     @property
     def db_url(self) -> URL:
         """
@@ -65,7 +73,10 @@ class Settings(BaseSettings):
         )
 
     model_config = SettingsConfigDict(
-        env_file=".env", env_prefix="DICOTA_", env_file_encoding="utf-8", extra="ignore",
+        env_file=".env",
+        env_prefix="DICOTA_",
+        env_file_encoding="utf-8",
+        extra="ignore",
     )
 
 

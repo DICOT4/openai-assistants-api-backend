@@ -6,6 +6,7 @@ from fastapi.responses import UJSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from api.log import configure_logging
+from api.middlewares.exceptions import ExceptionHandlerMiddleware
 from api.web.api.router import api_router
 from api.web.lifespan import lifespan_setup
 
@@ -36,5 +37,7 @@ def get_app() -> FastAPI:
     # Adds static directory.
     # This directory is used to access swagger files.
     app.mount("/static", StaticFiles(directory=APP_ROOT / "static"), name="static")
+    # Add global exception handler middleware
+    app.add_middleware(ExceptionHandlerMiddleware)
 
     return app
